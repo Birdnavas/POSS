@@ -9,7 +9,6 @@ import Recibos from "./components/recibos";
 import Control from "./components/control";
 import Inicio from "./components/inicio";
 import Registros from "./components/registros";
-import './css/Heritho.otf';
 
 import { useEffect, useState } from "react";
 import Web3 from "web3";
@@ -25,6 +24,7 @@ function App() {
   const [balanceshow, setBalanceshow] = useState(null);
   const [contract, setContract] = useState();
   const [acceso, setAcceso] = useState();
+  const [acceder, setAcceder] = useState();
   const [ListarInformacion, setListarInformacion] = useState([]);
 
   const conectarWallet = async () => {
@@ -101,10 +101,14 @@ function App() {
     for (let i = 0; i <= taskCounter; i++){
       const temp = await contract.methods.tasks(i).call();
       console.log(temp.done)
+      if(temp.description == account){
+        setAcceder(true)
+      }
+
       if (temp.description == account && temp.done == true){
         setAcceso(true)
       }else{
-        setAcceso(false)
+        //setAcceso(false)
       }
     }
     }
@@ -124,7 +128,7 @@ function App() {
 
     try {
       const result = await contract.methods.createTask(formulario.title, formulario.description,).send({ from: account });
-      //console.log(result);
+      console.log(result);
     } catch (error) {
       console.error(error);
     }
@@ -185,7 +189,7 @@ function App() {
                     ListarInformacion = {ListarInformacion}
                     cambioEstadoTarea = {cambioEstadoTarea}/><Registros />
                   </>} />
-                <Route path="/menu" element={<Menus acceso={acceso} />} />
+                <Route path="/menu" element={<Menus acceso={acceso} acceder={acceder} />} />
                 <Route path="/productos" element={<Productos />} />
                 <Route path="/ventas" element={<Ventas />} />
                 <Route path="/caja" element={<Caja />} />

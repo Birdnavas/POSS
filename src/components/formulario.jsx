@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 const Formulario = (props) => {
 
-
-
   return (
     <>
 
@@ -12,6 +10,7 @@ const Formulario = (props) => {
           <div className="container">
 
             <div className="box L texto centro">
+
             <form onSubmit={props.registrarInformacion} className="formulario">
               <h2>Añadir usuario</h2>
               <input placeholder="Nombre" type="text" id="title" name="title" onChange={props.ManejarFormulario} value={props.formulario.title} required></input><br></br>
@@ -36,8 +35,8 @@ const Formulario = (props) => {
                     <td><button className="boton" onClick={() => props.cambioEstadoTarea(item.id)}>
                       {item.done ? 'Gerente' : 'Cajero'}
                     </button></td>
-                    <td><input name='title' value={item.title} /></td>
-                    <td><input name='description' value={item.description} /></td>
+                    <td><input placeholder={item.title} /></td>
+                    <td><input placeholder={item.description} /></td>
                   </tr>
 
                 ))}
