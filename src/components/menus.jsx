@@ -4,6 +4,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import Caja from "./caja.jsx";
 
 const Menus = (props) => {
     console.log(props.acceso)
@@ -20,7 +21,7 @@ const Menus = (props) => {
                         <Link to="/caja"><div className="box P texto centro">CAJA</div></Link>
                         <Link to="/recibos"><div className="box P texto centro">RECIBOS</div></Link>
                         {props.acceso ? (<><Link to="/control"><div className="box P texto centro">PANEL DE CONTROL</div></Link></>):(<></>)}
-                    </>):(<>No autorizado</>)}
+                    </>):(<><Caja/></>)}
                         
 
                 </div>
