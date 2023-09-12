@@ -1,6 +1,5 @@
 import icoeth from './img/etereo.png';
 import icomm from './img/metamask.png';
-import Formulario from './formulario';
 import {
     BrowserRouter as Router,
     Routes,
@@ -18,6 +17,8 @@ const Menu = (props) => {
                     <div className="logo">SivarP0$</div>
 
                     <ul className="menu">
+                    {props.Metamask ? (<>
+                    
                         {props.direccion ? (<></>) : (
                             <>
                                 <button onClick={props.conectarWallet} className="boton" value={props.account}>Conectar wallet</button>
@@ -37,6 +38,9 @@ const Menu = (props) => {
                                 </table>
                             </>) : (<></>)
                         }
+
+                    </>):(<><button className='boton'>Instala metamask</button></>)}
+                        
                     </ul>
 
                 </div>
@@ -48,8 +52,9 @@ const Menu = (props) => {
                 <div className='contenedor'>
 
                     <ul className="menu">
-                        <li><Link to="/menu">Menu</Link></li>
-                        <li><Link to="/form">Administrar</Link></li>
+
+                    {props.acceso ? (<><li><Link to="/menu">Dashboard</Link></li></>):(<><li><Link to="/caja">Caja</Link></li></>)}
+                        <li><Link to="/form">Usuarios</Link></li>
                     </ul>
 
 

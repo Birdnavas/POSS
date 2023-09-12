@@ -171,15 +171,17 @@ function App() {
   return (
     <Router>
       <div>
-        {Metamask ? (
           <>
             <Menu
               conectarWallet={conectarWallet}
               direccion={accountshow}
               saldo={balanceshow}
+              Metamask={Metamask}
+              acceso={acceso} acceder={acceder}
             ></Menu>
 
             <div className="centro">
+            {Metamask ? (
               <Routes>
                 <Route path="/form" element={
                   <> <Formulario
@@ -198,11 +200,9 @@ function App() {
                 <Route path="/control" element={<Control />} />
                 <Route path="/inicio" element={<Inicio />} />
               </Routes>
+              ) : (<><Caja /></>)}
             </div>
           </>
-        ) : (
-          <div>Instala metamask</div>
-        )}
       </div>
     </Router>
   );
